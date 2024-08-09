@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 import pytesseract
-import matplotlib.pyplot as plt
 import streamlit as st
 from PIL import Image
 
@@ -49,12 +48,11 @@ if test_img_file is not None:
     test_img = np.array(Image.open(test_img_file))
 
     # Load the original PAN card image stored within the app
-    original_img = cv2.imread('original_pan_card.jpg')  # Make sure this file is included in the repo
+    original_img = cv2.imread('original_pan_card.jpg')  # Ensure this file is included in the repo
 
     # Analyze the card
     result, tampered_img = analyze_card(original_img, test_img)
     st.write(result)
 
-    # Display images
-    st.image([original_img, test_img, tampered_img], caption=["Original PAN Card", "Test PAN Card", "Tampered Detection"], use_column_width=True)
-
+    # Display the test image and the tampered detection result
+    st.image([test_img, tampered_img], caption=["Test PAN Card", "Tampered Detection"], use_column_width=True)

@@ -54,5 +54,9 @@ if test_img_file is not None:
     result, tampered_img = analyze_card(original_img, test_img)
     st.write(result)
 
-    # Display the test image and the tampered detection result
-    st.image([test_img, tampered_img], caption=["Test PAN Card", "Tampered Detection"], use_column_width=True)
+    if tampered_img is not None:
+        # Convert the tampered image to a PIL image
+        tampered_img_pil = Image.fromarray(tampered_img)
+
+        # Display the test image and the tampered detection result
+        st.image([test_img, tampered_img_pil], caption=["Test PAN Card", "Tampered Detection"], use_column_width=True)
